@@ -15,7 +15,7 @@ import com.mc.service.UserService;
 public class UserServiceImpl implements UserService{
 
 	@Autowired
-	UserRepository userRepository;
+	public UserRepository userRepository;
 	
 	@Override
 	public User saveUser(User user) {
@@ -38,6 +38,19 @@ public class UserServiceImpl implements UserService{
 
 		return userRepository.findById(userId).orElseThrow(()-> new ResourceNotFound("User Not found in server: "+userId));
 	}
+
+	@Override
+	public User updateUser(User user) {
+		
+		return userRepository.save(user);
+	}
+
+	@Override
+	public void deleteUser(String userId) {
+		userRepository.deleteById(userId);		
+	}
+
+	
 	
 	
 
