@@ -1,5 +1,6 @@
 package com.mc.exception;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -14,8 +15,8 @@ public class GlobalException {
 	{
 		String message = ex.getMessage();
 		//ApiResponse build = ApiResponse.builder().message(message);
-		//ApiResponse;
-		return null;
+		ApiResponse response = ApiResponse.builder().message(message).success("Not Found data...").status(HttpStatus.NOT_FOUND).build();
+		return new ResponseEntity<ApiResponse>(response, HttpStatus.NOT_FOUND);
 	}
 	
 }
