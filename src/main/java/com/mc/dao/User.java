@@ -1,9 +1,15 @@
 package com.mc.dao;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,4 +37,7 @@ public class User {
 	
 	@Column(name = "about")
 	private String about;
+	
+	@Transient
+	private List<Rating> rating = new ArrayList<>();
 }
