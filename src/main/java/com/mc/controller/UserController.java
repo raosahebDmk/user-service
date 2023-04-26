@@ -2,6 +2,7 @@ package com.mc.controller;
 
 import java.util.List;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import com.mc.dao.User;
 import com.mc.service.UserService;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.Builder;
 
 @RestController
@@ -33,12 +35,15 @@ public class UserController {
 		User user1 = userService.saveUser(user);		
 		return ResponseEntity.status(HttpStatus.CREATED).body(user1);
 	}
-	
+	int i = 1;
 	@GetMapping("/{userId}")
-	@CircuitBreaker(name = "ratingHotelBracker", fallbackMethod = "ratingHotelFallBack")
+	//@CircuitBreaker(name = "ratingHotelBracker", fallbackMethod = "ratingHotelFallBack")
+	@Retry(name = "ratingHotelBracker", fallbackMethod = "ratingHotelFallBack")
 	public ResponseEntity<User> getUser(@PathVariable String userId)
 	{
 		User user = userService.getUser(userId);
+		System.out.println("**** count : "+i);
+		i++;
 		return ResponseEntity.ok(user);
 	}
 	
