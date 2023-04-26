@@ -6,17 +6,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Rating {
+public class Hotel {
+	
+	private String id;
+	private String name;
+	private String location;
+	private String about;
 
-	private String ratingId;
-	private String userId;
-	private String hotelId;
-	private String rating;
-	private String feedback;
-	private Hotel hotel;
 }

@@ -1,8 +1,6 @@
 package com.mc.dao;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import jakarta.persistence.Column;
